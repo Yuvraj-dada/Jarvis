@@ -80,6 +80,17 @@ while True:
         time()
     elif 'date' in query:
         date()
+    elif 'search on google' in query:
+                speak("What do you want to search Sir?")
+                search_Google = take_Command()
+                speak(f"Searching {search_Google} on google...")
+                webbrowser.open("https://google.com/?#q=" + search_Google)
+
+    elif 'search on youtube' in query:
+                speak("What do you want to search Sir?")
+                search_Youtube = take_Command()
+                speak(f"Searching {search_Youtube} on youtube...")
+                webbrowser.open("https://www.youtube.com/results?search_query=" + search_Youtube)
     elif 'remember ' in query:
         remember()
         speak("do you want me to remember something new sir?")
