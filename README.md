@@ -1,2 +1,2 @@
 # Jarvis
-this is your friendly AI
+this is your friendly Not ACtual Ai
