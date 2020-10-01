@@ -41,9 +41,53 @@ def takecommand():
         return "None"
     return query
 wishme()
+
+def date():
+    year = int(datetime.datetime.now().year)
+    month = int(datetime.datetime.now().month)
+    date = int(datetime.datetime.now().day)
+    speak("Today's date is")
+    speak(date)
+    speak(month)
+    speak(year)
+    
+def time():
+    Time = datetime.datetime.now().strftime("%I:%M:%S")
+    speak("The current time is")
+    speak(Time)
+
+    
+def remember():
+    speak("what do you want me to remember sir")
+    data = takeCommand()
+    speak("You told me to remember that " + data)
+    remember = open('remember.txt', 'w')
+    remember.write(data)
+    speak("I remember that now")
+    remember.close()
+    
+    
+    
 while True:
     query = takecommand().lower()
     if 'wikipedia' in query:
         wiki(query)
+    elif ('hey jarvis') in query:
+        speak("hello sir,what can i do for you?")
     elif 'who made you' in query:
         speak("Mr.Yuvraj has made me")
+     elif 'time' in query:
+        time()
+    elif 'date' in query:
+        date()
+    elif 'remember ' in query:
+        remember()
+        speak("do you want me to remember something new sir?")
+        ask = takeCommand()
+        if (ask == 'yes'):
+            remember()
+        else:
+            quit()
+    elif 'exit' in query:
+        speak("Ok sir exiting")
+        quit()
