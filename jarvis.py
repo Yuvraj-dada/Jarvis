@@ -45,3 +45,5 @@ while True:
     query = takecommand().lower()
     if 'wikipedia' in query:
         wiki(query)
+    elif 'who made you' in query:
+        speak("Mr.Yuvraj has made me")
