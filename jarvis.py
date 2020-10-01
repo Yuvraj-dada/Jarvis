@@ -1,0 +1,47 @@
+import pyttsx3
+import datetime
+import pyaudio
+import wikipedia
+import speech_recognition as sr
+import random
+engine=pyttsx3.init('sapi5')
+voices=engine.getProperty('voices')
+print(voices[0].id)
+engine.setProperty('voice',voices[0].id)
+
+def speak(audio):
+    engine.say(audio)
+    engine.runAndWait()
+def wiki(a):
+    result=wikipedia.summary(a,sentences=2)
+    speak(result)
+def wishme():
+    hour = int(datetime.datetime.now().hour)
+    if hour>=0 and hour<12:
+        speak('good morniong sir')
+    elif hour>=12 and hour<18:
+        speak('good after noon')
+    else:
+        speak('good eveing')
+    speak('I am jarvis sir please tell me how may i help you')
+
+def takecommand():
+    r=sr.Recognizer()
+    with sr.Microphone() as source:
+        print('listening...')
+        r.pause_threshold=1
+        audio=r.listen(source)
+    try:
+        print('recognising...')
+        query=r.recognize_google(audio,language='en-in')
+        print('user said',query)
+    except Exception as e:
+        speak('say again please')
+        print('say again...')
+        return "None"
+    return query
+wishme()
+while True:
+    query = takecommand().lower()
+    if 'wikipedia' in query:
+        wiki(query)
